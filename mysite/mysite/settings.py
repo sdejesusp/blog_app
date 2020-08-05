@@ -119,3 +119,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# File with email credentials: first line email, second line password
+file = os.path.join(BASE_DIR, 'mysite/email_credentials.txt')
+user_email = None
+user_password = None
+with open(file) as emaildata:
+    user_email = emaildata.readline()
+    user_password = emaildata.readline()
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = user_email
+EMAIL_HOST_PASSWORD = user_password
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
